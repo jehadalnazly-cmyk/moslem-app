@@ -1,0 +1,37 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Cordova
+      run: npm install -g cordova
+
+    - name: Create Cordova Project & Build
+      run: |
+        cordova create build-folder com.jehad.moslemapp "MoslemApp"
+        cd build-folder
+        rm -rf www/*
+        cp ../index.html www/
+        cp ../config.xml .
+        cordova platform add android@10.1.2
+        cordova build android
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug-apk
+        path: build-folder/platforms/android/app/build/outputs/apk/debug/app-debug.apk
