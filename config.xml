@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.jehad.moslemapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>تطبيق مسلم</name>
+    <description>تطبيق صدقة جارية لمواقيت الصلاة والراديو</description>
+    <author email="jehad@example.com" href="http://example.com">جهاد خميس النزلي</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    
+    <plugin name="cordova-plugin-background-mode" />
+    <plugin name="cordova-plugin-local-notification" />
+    
+    <preference name="KeepRunning" value="true" />
+</widget>
